@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#c8a84b, #a08030);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e8c96a;
+}
+
+/* Selection */
+::selection {
+  background: #c8a84b;
+  color: #0a0a0a;
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-3 text-gold uppercase tracking-[0.3em] text-xs font-medium font-body;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply block w-10 h-px bg-gold;
+  }
+
+  .section-heading {
+    @apply font-display text-5xl md:text-7xl lg:text-[80px] leading-[0.95] tracking-wide text-white;
+  }
+
+  .heading-accent {
+    @apply relative pl-6;
+  }
+  .heading-accent::before {
+    content: '';
+    @apply absolute left-0 top-1 bottom-1 w-[3px] bg-gold;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-black font-bold uppercase tracking-[0.15em] px-8 py-4 text-sm transition-all duration-300 hover:bg-gold-light hover:scale-[1.04] hover:shadow-gold-glow font-body;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-gold text-gold font-bold uppercase tracking-[0.15em] px-8 py-4 text-sm transition-all duration-300 hover:bg-gold hover:text-black hover:scale-[1.04] font-body bg-transparent;
+  }
+
+  .gold-border-card {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+      linear-gradient(135deg, #c8a84b, #e8c96a) border-box;
+  }
+
+  .input-dark {
+    @apply w-full bg-dark-bg border border-gold/20 px-5 py-4 text-white font-body text-sm placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/30 transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .clip-diagonal-top {
+    clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .clip-diagonal-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+  }
+
+  .clip-diagonal-both {
+    clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #c8a84b 0%, #e8c96a 50%, #c8a84b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(200, 168, 75, 0.04) 0,
+      rgba(200, 168, 75, 0.04) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 1px;
+    width: 100%;
+    background: #c8a84b;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Card sweep border for gallery */
+@keyframes goldSweep {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.gallery-item:hover .gallery-border {
+  background: linear-gradient(90deg, transparent, #c8a84b, transparent);
+  background-size: 200% 100%;
+  animation: goldSweep 1.6s linear infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
