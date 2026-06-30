@@ -46,12 +46,8 @@ export default function Pricing() {
                   >
                     {tab.label}
                     {tab.id === 'annual' && (
-                      <span
-                        className={`ml-2 inline-block px-2 py-0.5 text-[10px] tracking-[0.15em] rounded ${
-                          active ? 'bg-black text-gold' : 'bg-gold/20 text-gold'
-                        }`}
-                      >
-                        Save 30%
+                      <span >
+                        
                       </span>
                     )}
                   </button>
@@ -70,11 +66,7 @@ export default function Pricing() {
                   plan.highlight ? 'lg:-translate-y-4 lg:scale-[1.04] z-10' : ''
                 }`}
               >
-                {plan.highlight && (
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gold text-black px-5 py-2 text-[11px] tracking-[0.3em] font-bold uppercase font-body rounded-full whitespace-nowrap shadow-gold-glow">
-                    ★ Most Popular
-                  </div>
-                )}
+                
 
                 <div
                   className={`relative h-full flex flex-col p-8 ${
